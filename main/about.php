@@ -26,7 +26,7 @@ require "../functions/theme-func.php";
             <a href="../main/index.php" title="Home">DOMVS</a>
             <a href="../main/shop.php" title="Shop">TABERNA</a>
             <a href="../main/about.php" title="About Us">DE NOBIS</a>
-            <a href="...customer/contact.php" title="Contact Us">CONTACTA NOS</a>
+            <a href="../main/contact.php" title="Contact Us">CONTACTA NOS</a>
             <a id="aperireIndicem" href="#" title="Menu">INDEX</a>
         </header>
         <section class="negotivm" style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(200,200,200);':''; ?>">
