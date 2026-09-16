@@ -2,7 +2,7 @@
     $hostname='localhost';
     $dbname='sanctvs';
     $username='root';
-    $password='yourpassword';
+    $password='yourpassword'; //Change it to '' if none
     $charset='utf8mb4';
     $dsn="mysql:host=$hostname;dbname=$dbname;charset=$charset";
 
