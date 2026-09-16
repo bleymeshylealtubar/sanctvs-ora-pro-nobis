@@ -62,7 +62,7 @@ CREATE TABLE saints(
     _life_ VARCHAR(255) NOT NULL,
     FOREIGN KEY fk_st_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
     FOREIGN KEY fk_st_nm(_saint_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
-)
+);
 
 /* Table for blesseds */
 CREATE TABLE blesseds(
@@ -77,7 +77,7 @@ CREATE TABLE blesseds(
     _life_ VARCHAR(255) NOT NULL,
     FOREIGN KEY fk_bl_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
     FOREIGN KEY fk_bl_nm(_blessed_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
-)
+);
 
 /* Table for accessories */
 CREATE TABLE accessories(
@@ -87,4 +87,4 @@ CREATE TABLE accessories(
     _symbolism_ VARCHAR(255) NOT NULL
     FOREIGN KEY fk_acc_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
     FOREIGN KEY fk_acc_nm(_product_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
-)
+);
