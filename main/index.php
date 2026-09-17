@@ -671,7 +671,7 @@ require "../functions/theme-func.php";
                         width="100px" height="100px"
                     >
                     <h3><?php echo $displayUsername; ?></h3>
-                    <a href="./customer/orders.php" title="Orders">ORDINES</a>
+                    <a href="../main/orders.php" title="Orders">ORDINES</a>
                     <a id="logOut" title="Log Out">EXIRE</a>
                 </div>
             </div>
