@@ -7,7 +7,7 @@ $userStmt->execute([':id'=>$user_id]);
 $targetUser=$userStmt->fetch();
 $targetUsername=$targetUser['_username_'];
 
-if($_SERVER['REQUEST_METHOD']==='POST'&& isset($_POST['complete_order_id'])){
+if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST['complete_order_id'])){
     $order_id=filter_input(INPUT_POST,'complete_order_id',FILTER_VALIDATE_INT);
     
     if($order_id){

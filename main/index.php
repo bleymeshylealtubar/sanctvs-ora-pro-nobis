@@ -659,7 +659,7 @@ require "../functions/theme-func.php";
                 
             </div>
         </section>
-        <footer style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(100,100,100);':''; ?>">
+        <footer style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(150,150,150);':''; ?>">
             <p>IN NOMINE PATRIS, ET FILII, ET SPIRITVS SANCTI, AMEN.</p>
         </footer>
         <div id="index">

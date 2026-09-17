@@ -20,8 +20,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                     $quantity=$orderData['_quantity_'];
                     $restoreStmt=$pdo->prepare("UPDATE products SET _stock_ = _stock_ + :quantity WHERE _id_ = :id");
                     $restoreStmt->execute([':quantity'=>$quantity,':id'=>$product_id]);
-                    $delStmt=$pdo->prepare("DELETE FROM orders WHERE _id_ = :id AND _username_ = :username");
-                    $delStmt->execute([':id'=>$order_id,':username'=>$username]);
+                    $cancelStmt=$pdo->prepare("UPDATE orders SET _status_ = 'Cancelled', _hidden_ = 'Yes' WHERE _id_ = :id 
+                        AND _username_ = :username AND _status_ = 'Ordered'");
+                    $cancelStmt->execute([':id'=>$order_id,':username'=>$username]);
                 }
 
                 $pdo->commit();
@@ -35,16 +36,16 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $order_id=filter_input(INPUT_POST,'remove_order_id',FILTER_VALIDATE_INT);
         
         if($order_id){
-            $delStmt=$pdo->prepare("DELETE FROM orders WHERE _id_ = :id AND _username_ = :username AND _status_ = 'Delivered'");
+            $delStmt=$pdo->prepare("UPDATE orders SET _hidden_ = 'Yes' WHERE _id_ = :id 
+                AND _username_ = :username AND _status_ = 'Delivered'");
             $delStmt->execute([':id'=>$order_id,':username'=>$username]);
         }
     }
 }
 
-$ordersStmt=$pdo->prepare("SELECT o.*, p._image_path_ FROM orders o 
+$ordersStmt=$pdo->prepare("SELECT o.*,p._image_path_ FROM orders o
     JOIN products p ON o._product_id_ = p._id_ WHERE o._username_ = :username
-    ORDER BY o._id_ ASC
-");
+    AND o._hidden_ = 'No' ORDER BY o._id_ ASC");
 $ordersStmt->execute([':username'=>$username]);
 $my_orders=$ordersStmt->fetchAll();
 ?>

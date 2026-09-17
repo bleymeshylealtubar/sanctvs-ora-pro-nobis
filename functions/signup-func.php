@@ -12,11 +12,17 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($pdo)){
     if(empty($username)||empty($email)||empty($password)){
         $message="All fields are required.";
         $messageType="error";
-    }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-        $message="Invalid email format.";
+    }elseif(strlen($username)<8){
+        $message="Username must not be less than 8 characters.";
         $messageType="error";
     }elseif(strlen($password)<8){
-        $message="Password must be at least 8 characters.";
+        $message="Password must not be less than 8 characters.";
+        $messageType="error";
+    }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+        $message="Invalid email format.";
+        $messageType="error";
+    }elseif(!preg_match('/[A-Za-z]/',$password)||!preg_match('/[0-9]/',$password)||!preg_match('/[^A-Za-z0-9]/', $password)){
+        $message = "Password must contain letters, numbers, and a special character.";
         $messageType="error";
     }else{
         try{

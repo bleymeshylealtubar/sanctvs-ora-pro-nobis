@@ -30,7 +30,6 @@ require '../functions/password-func.php';
                         name="email"
                         placeholder="Email Address"
                         autocomplete="email"
-                        value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                         required
                     >
                     <input
@@ -61,7 +60,7 @@ require '../functions/password-func.php';
         >
             <div class="change <?php echo htmlspecialchars($messageType,ENT_QUOTES,'UTF-8'); ?>">
                 <h1><?php echo $messageType==='success'?'SVCCESSVS':'NOTIFICATIO';?></h1>
-                <p><?php echo htmlspecialchars($message,ENT_QUOTES,'UTF-8'); ?></p>
+                <p style="text-align: center;"><?php echo htmlspecialchars($message,ENT_QUOTES,'UTF-8'); ?></p>
                 <button type="button" onclick="closeModal()">
                     <?php echo $messageType==='success'?'INSCRIBE TE':'CLAVDERE';?>
                 </button>

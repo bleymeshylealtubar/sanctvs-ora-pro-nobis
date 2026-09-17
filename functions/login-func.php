@@ -32,21 +32,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($pdo)){
             $userRecord=$stmt->fetch();
 
             if($userRecord&&password_verify($password,$userRecord['_password_'])){
-                if(strtolower(trim($userRecord['_role_']??''))!=='customer'){
-                    $message="Customer access only.";
-                    $messageType="error";
-                    $loginSuccess=false;
-                }else{
-                    session_start();
+                session_start();
 
-                    $_SESSION['user_id']=$userRecord['_id_'];
-                    $_SESSION['username']=$userRecord['_username_'];
-                    $_SESSION['email']=$userRecord['_email_'];
-                    $_SESSION['role']=$userRecord['_role_'];
-                    $message="Login successful! Welcome back, ".htmlspecialchars($userRecord['_username_'],ENT_QUOTES,'UTF-8').".";
-                    $messageType="success";
-                    $loginSuccess=true;
-                }
+                $_SESSION['user_id']=$userRecord['_id_'];
+                $_SESSION['username']=$userRecord['_username_'];
+                $_SESSION['email']=$userRecord['_email_'];
+                $_SESSION['role']=$userRecord['_role_'];
+                $message="Login successful! Welcome back, ".htmlspecialchars($userRecord['_username_'],ENT_QUOTES,'UTF-8').".";
+                $messageType="success";
+                $loginSuccess=true;
             }else{
                 $message="Invalid username, email, or password.";
                 $messageType="error";

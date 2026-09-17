@@ -58,7 +58,7 @@ require "../functions/signup-func.php";
         >
             <div class="sign-up <?php echo htmlspecialchars($messageType); ?>">
                 <h1><?php echo $messageType==='success'?'SVCCESSVS':'NOTIFICATIO';?></h1>
-                <p><?php echo htmlspecialchars($message); ?></p>
+                <p style="text-align: center;"><?php echo htmlspecialchars($message); ?></p>
                 <button type="button" onclick="closeModal()">
                     <?php echo $messageType==='success'?'INSCRIBE TE':'CLAVDERE';?>
                 </button>

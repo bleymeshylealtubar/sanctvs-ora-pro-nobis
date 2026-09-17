@@ -20,6 +20,7 @@ require "../functions/theme-func.php";
     <body>
         <header class="horizontal" style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(150,150,150);':''; ?>">
             <img 
+                class="insigne-prodvcti"
                 src="<?php echo $currentTheme==='Silver Key'?
                 '../assets/others/modvs-beatvs.png':'../assets/others/modvs-sanctvs.png'; ?>"
                 width="100px" height="100px"
@@ -31,7 +32,9 @@ require "../functions/theme-func.php";
             <div>
                 <?php if (!empty($my_orders)): ?>
                     <?php foreach ($my_orders as $ord): ?>
-                        <div class="ordo">
+                        <div class="ordo" style="<?php echo $currentTheme==='Silver Key'?
+                            'background-color: rgb(150,150,150);':''; ?>"
+                        >
                             <img 
                                 src=".<?php echo htmlspecialchars($ord['_image_path_'], ENT_QUOTES, 'UTF-8'); ?>"
                                 alt="<?php echo htmlspecialchars($ord['_product_name_'], ENT_QUOTES, 'UTF-8'); ?>"
@@ -41,10 +44,14 @@ require "../functions/theme-func.php";
                             <p>
                                 <strong>Total Cost</strong><br><br>
                                 &#8369;<?php 
-                                    echo htmlspecialchars(number_format((float)$ord['_total_cost_'], 2),ENT_QUOTES,'UTF-8'); ?> (<?php 
-                                    echo (int)$ord['_quantity_']; ?> + &#8369;<?php 
+                                    echo htmlspecialchars(number_format((float)$ord['_total_cost_'], 2),ENT_QUOTES,'UTF-8'); ?> 
+                                    <br>(<?php echo (int)$ord['_quantity_']; ?> + &#8369;<?php 
                                     echo htmlspecialchars(number_format((float)$ord['_shipping_'], 2), ENT_QUOTES, 'UTF-8'); 
                                 ?>)
+                            </p>
+                            <p>
+                                <strong>Complete Address</strong><br><br>
+                                <?php echo htmlspecialchars($ord['_complete_address_'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
                             </p>
                             <p>
                                 <strong>Ordered</strong><br><br>
@@ -58,7 +65,7 @@ require "../functions/theme-func.php";
                                 <strong>Payment Method</strong><br><br>
                                 <?php echo htmlspecialchars($ord['_payment_method_'], ENT_QUOTES, 'UTF-8'); ?>
                             </p>
-                            <?php if($ord['_status_']!=='Delivered'): ?>
+                            <?php if($ord['_status_']==='Ordered'): ?>
                                 <button 
                                     type="button" class="perficereOrdinem" 
                                     data-id="<?php echo (int)$ord['_id_']; ?>" 
@@ -67,7 +74,9 @@ require "../functions/theme-func.php";
                                 >
                                     PERFICERE ORDINEM
                                 </button>
-                            <?php else: ?>
+                            <?php elseif($ord['_status_']==='Cancelled'): ?>
+                                <p>Cancelled</p>
+                            <?php elseif($ord['_status_']==='Delivered'): ?>
                                 <p>Completed</p>
                             <?php endif; ?>
                         </div>
@@ -77,7 +86,7 @@ require "../functions/theme-func.php";
                 <?php endif; ?>
             </div>
         </section>
-        <footer>
+        <footer style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(150,150,150);':''; ?>">
             <p>
                 GLORIA PATRI, ET FILIO, ET SPIRITVI SANCTO,
                 SICVT ERAT IN PRINCIPIO, ET NVNC, ET SEMPER,
@@ -85,13 +94,26 @@ require "../functions/theme-func.php";
             </p>
         </footer>
         <div id="perficereOrdinem">
-            <form method="post" action="../admin/customers.php?user_id=<?php echo $user_id; ?>">
+            <form 
+                method="post" action="../admin/customers.php?user_id=<?php echo $user_id; ?>"
+                style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(150,150,150);':''; ?>"
+            >
                 <h1>PERFICERE ORDINEM</h1>
                 <p>Confirm the delivery and payment of this order?</p>
                 <input type="hidden" name="complete_order_id" id="completeOrder">
                 <div class="confirmare">
-                    <button type="submit" title="Confirm">CONFIRMARE</button>
-                    <button id="cancellare" type="button" title="Cancel">CANCELLARE</button>
+                    <button 
+                        type="submit" title="Confirm"
+                        style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(100,100,100);':''; ?>"
+                    >
+                        CONFIRMARE
+                    </button>
+                    <button 
+                        id="cancellare" type="button" title="Cancel"
+                        style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(200,200,200);':''; ?>"
+                    >
+                        CANCELLARE
+                    </button>
                 </div>
             </form>
         </div>

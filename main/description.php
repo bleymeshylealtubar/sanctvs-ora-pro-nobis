@@ -176,7 +176,7 @@ require '../functions/theme-func.php';
                 </div>
             </form>
         </div>
-        <div id="onvstvs">
+        <div id="onvstvs" style="z-index: 1000;">
             <div></div>
         </div>
         <script src="../scripts/orders.js"></script>

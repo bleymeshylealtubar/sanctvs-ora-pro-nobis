@@ -41,11 +41,12 @@ CREATE TABLE orders (
     _ordered_ VARCHAR(255) NOT NULL,
     _delivery_date_ VARCHAR(255) NOT NULL,
     _status_ ENUM('Ordered','Delivered','Cancelled') DEFAULT 'Ordered' NOT NULL,
-    FOREIGN KEY fk_ord_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_ord_nm(_product_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_ord_pr(_price_) REFERENCES products(_price_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_ord_us(_username_) REFERENCES products(_username_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_ord_em(_price_) REFERENCES products(_email_) ON UPDATE CASCADE
+    _hidden_ ENUM('Yes','No') DEFAULT 'No' NOT NULL,
+    CONSTRAINT fk_ord_id FOREIGN KEY (_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
+    CONSTRAINT fk_ord_nm FOREIGN KEY(_product_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE,
+    CONSTRAINT fk_ord_pr FOREIGN KEY(_price_) REFERENCES products(_price_) ON UPDATE CASCADE,
+    CONSTRAINT fk_ord_us FOREIGN KEY(_username_) REFERENCES products(_username_) ON UPDATE CASCADE,
+    CONSTRAINT fk_ord_em FOREIGN KEY(_price_) REFERENCES products(_email_) ON UPDATE CASCADE
 );
 
 /* Table for saints */
@@ -60,8 +61,8 @@ CREATE TABLE saints(
     _patronage VARCHAR(255) NOT NULL,
     _veneration_site_ VARCHAR(255) NOT NULL,
     _life_ VARCHAR(255) NOT NULL,
-    FOREIGN KEY fk_st_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_st_nm(_saint_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
+    CONSTRAINT fk_st_id FOREIGN KEY(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
+    CONSTRAINT fk_st_nm FOREIGN KEY(_saint_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
 );
 
 /* Table for blesseds */
@@ -75,8 +76,8 @@ CREATE TABLE blesseds(
     _patronage VARCHAR(255) NOT NULL,
     _veneration_site_ VARCHAR(255) NOT NULL,
     _life_ VARCHAR(255) NOT NULL,
-    FOREIGN KEY fk_bl_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_bl_nm(_blessed_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
+    CONSTRAINT fk_bl_id FOREIGN KEY(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
+    CONSTRAINT fk_bl_nm FOREIGN KEY(_blessed_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
 );
 
 /* Table for accessories */
@@ -85,6 +86,6 @@ CREATE TABLE accessories(
     _product_id_ INT NOT NULL,
     _product_name_ VARCHAR(255) NOT NULL,
     _symbolism_ VARCHAR(255) NOT NULL
-    FOREIGN KEY fk_acc_id(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
-    FOREIGN KEY fk_acc_nm(_product_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
+    CONSTRAINT fk_acc_id FOREIGN KEY(_product_id_) REFERENCES products(_id_) ON UPDATE CASCADE,
+    CONSTRAINT fk_acc_nm FOREIGN KEY(_product_name_) REFERENCES products(_product_name_) ON UPDATE CASCADE
 );

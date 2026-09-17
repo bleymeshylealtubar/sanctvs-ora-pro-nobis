@@ -38,7 +38,7 @@ require '../functions/theme-func.php';
         >
             <div>
                 <h1>TABVLA MODERAMINIS</h1>
-                <p>Check the daily information of users and products.</p>
+                <p>Check the information of users and products.</p>
                 <div class="tabvla" style="<?php echo $currentTheme==='Silver Key'?'background-color: rgb(100,100,100);':''; ?>">
                     <h3>INFORMATIO GENERALIS</h3>
                     <div>

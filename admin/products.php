@@ -356,7 +356,7 @@ require "../functions/theme-func.php";
                 </div>
             </div>
         </div>
-        <div id="onvstvs">
+        <div id="onvstvs" style="z-index: 1000;">
             <div></div>
         </div>
         <script src="../scripts/logout.js"></script>

@@ -95,7 +95,7 @@ require '../functions/theme-func.php';
                 <div class="profilvm-vsoris">
                     <img 
                         src="<?php echo $currentTheme==='Silver Key'?
-                        '../assets/others/modvs-beatvs.png':'./assets/others/modvs-sanctvs.png'; ?>"
+                        '../assets/others/modvs-beatvs.png':'../assets/others/modvs-sanctvs.png'; ?>"
                         width="100px" height="100px"
                     >
                     <h3><?php echo $displayUsername; ?></h3>

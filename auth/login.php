@@ -26,8 +26,7 @@ require "../functions/login-func.php";
                     <p>Enter user information to log in.</p>
                     <input 
                         type="text" 
-                        name="username" 
-                        value="<?php echo htmlspecialchars($_POST['username']??'',ENT_QUOTES,'UTF-8'); ?>"
+                        name="username"
                         placeholder="Username" 
                         required
                         autocomplete="username"
@@ -35,7 +34,6 @@ require "../functions/login-func.php";
                     <input 
                         type="email"
                         name="email"
-                        value="<?php echo htmlspecialchars($_POST['email']??'',ENT_QUOTES,'UTF-8'); ?>"
                         placeholder="Email Address"
                         required
                         autocomplete="email"
@@ -59,7 +57,7 @@ require "../functions/login-func.php";
         >
             <div class="log-in <?php echo htmlspecialchars($messageType,ENT_QUOTES,'UTF-8'); ?>">
                 <h1><?php echo $messageType==='success'?'SVCCESSVS':'NOTIFICATIO';?></h1>
-                <p><?php echo htmlspecialchars($message,ENT_QUOTES,'UTF-8'); ?></p>
+                <p style="text-align: center;"><?php echo htmlspecialchars($message,ENT_QUOTES,'UTF-8'); ?></p>
                 <button type="button" onclick="closeModal()">
                     <?php echo $messageType==='success'?'INSCRIBE TE':'CLAVDERE';?>
                 </button>
@@ -75,7 +73,13 @@ require "../functions/login-func.php";
                 const loginSuccess=<?php echo $loginSuccess?'true':'false'; ?>;
 
                 if(loginSuccess){
-                    window.location.href='../main/index.php';
+                    const userRole=<?php echo json_encode($_SESSION['role']??'Customer'); ?>;
+                    
+                    if(userRole.toLowerCase()==='admin'){
+                        window.location.href='../admin/admin.php';
+                    }else{
+                        window.location.href='../main/index.php';
+                    }
                 }
             }
 

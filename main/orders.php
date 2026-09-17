@@ -46,7 +46,7 @@ require '../functions/theme-func.php';
                                     
                                 >
                                 <p>Order completed and paid.</p>
-                                <form method="post" action="./orders.php">
+                                <form method="post" action="../main/orders.php">
                                     <input type="hidden" name="remove_order_id" value="<?php echo (int)$ord['_id_']; ?>">
                                     <button 
                                         type="submit" title="Remove Order" style="width: 100%;"

@@ -19,7 +19,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }elseif(strlen($password)<8){
         $message='The new password must contain at least 8 characters.';
         $messageType='error';
-    } elseif ($password!==$confirmPassword){
+    }elseif(!preg_match('/[A-Za-z]/',$password)||!preg_match('/[0-9]/',$password)||!preg_match('/[^A-Za-z0-9]/', $password)){
+        $message = "Password must contain letters, numbers, and a special character.";
+        $messageType="error";
+    }elseif($password!==$confirmPassword){
         $message='The passwords do not match.';
         $messageType='error';
     }else{
